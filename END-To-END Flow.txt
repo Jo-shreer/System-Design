@@ -1,6 +1,7 @@
-End-to-End Component Flows
-Flow 1: User Registration & Authentication Module
-User Registration Flow
+#End-to-End Component Flows
+#Flow 1: User Registration & Authentication Module
+
+#User Registration Flow
 
 Client Request → Load Balancer → API Gateway → User Service
     ↓
