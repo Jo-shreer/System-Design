@@ -25,8 +25,8 @@
     ↓
 [Routes to Load Balancer based on traffic type]
     ↓
-[L4 Load Balancer] ──── WebSocket Traffic
-[L7 Load Balancer] ──── HTTP/API Traffic
+[L4 Load Balancer] ──── WebSocket Traffic(L4 = Layer 4 (Transport Layer))
+[L7 Load Balancer] ──── HTTP/API Traffic(L7 = Layer 7 (Application Layer))
 ```
 
 **What happens:**
