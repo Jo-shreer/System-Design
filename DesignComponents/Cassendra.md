@@ -110,7 +110,7 @@ Reality: Cassandra has strict schema, Difference: Schema designed for access pat
 
 Cassandra works perfectly for WhatsApp because it treats message storage exactly like what it is: a time-ordered log of events that needs to be highly available, massively scalable, and optimized for the specific access patterns of a messaging application.
 
-# Cassandra Use Cases Beyond WhatsApp - Complete Notes
+# Cassandra Use Cases 
 
 ## What Makes Cassandra Special
 Cassandra is designed for: High write volume, Time-series data, Massive scale, No downtime, Geographic distribution. It's not just for messaging - any application with these characteristics benefits from Cassandra.
