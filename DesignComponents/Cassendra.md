@@ -25,10 +25,21 @@ Partition Key: conversation_id determines which node(s), Clustering Key: timesta
 ## Read/Write Operations
 
 ### Write Operation Scenario
-User sends message "Hello" in chat between Alice and Bob: Step 1: Client sends write request, Step 2: Coordinator node receives request, Step 3: Hash conversation_id to find target nodes, Step 4: Write to all replica nodes (B, C, D), Step 5: Wait for acknowledgment from 2 out of 3 nodes (Quorum), Step 6: Confirm write success to client.
+User sends message "Hello" in chat between Alice and Bob: 
+Step 1: Client sends write request, 
+Step 2: Coordinator node receives request, 
+Step 3: Hash conversation_id to find target nodes, 
+Step 4: Write to all replica nodes (B, C, D), 
+Step 5: Wait for acknowledgment from 2 out of 3 nodes (Quorum), 
+Step 6: Confirm write success to client.
 
 ### Read Operation Scenario
-Alice opens chat to see recent messages: Step 1: Client requests last 20 messages for "alice_bob_chat", Step 2: Hash conversation_id → Points to Nodes B, C, D, Step 3: Coordinator sends read request to replica nodes, Step 4: Nodes return messages sorted by timestamp DESC, Step 5: Coordinator merges results and returns to client.
+Alice opens chat to see recent messages: 
+Step 1: Client requests last 20 messages for "alice_bob_chat", 
+Step 2: Hash conversation_id → Points to Nodes B, C, D, 
+Step 3: Coordinator sends read request to replica nodes, 
+Step 4: Nodes return messages sorted by timestamp DESC, 
+Step 5: Coordinator merges results and returns to client.
 
 ## Consistency Levels
 
