@@ -38,5 +38,9 @@ Redis allows configuring eviction policies per use case.
 3.Cache invalidation (when underlying data changes)
 Explicit invalidation: After DB update, explicitly delete/update the cache entry.
 TTL (Time-to-Live): Set expiry times so stale data auto-refreshes.
-Pub/Sub invalidation: For distributed caches, use a publish-subscribe channel (e.g., Redis channels) to notify other nodes to drop/update entries.
+Pub/Sub invalidation: For distributed caches, use a publish-subscribe channel (e.g., Redis channels) to notify other nodes to drop/update entries.**
 ---
+
+"For consistency, I’d use a cache-aside strategy with Redis, ensuring that after each DB write the cache is explicitly updated or invalidated. For eviction, I’d rely on LRU to remove least recently used items when full. For invalidation, I’d combine TTLs for automatic freshness with explicit invalidation on updates, and possibly pub/sub for distributed invalidation across multiple cache nodes."
+
+
