@@ -1,0 +1,27 @@
+👉 How would you ensure the following?
+High availability of the queue even if some nodes fail
+Ordering guarantees of messages
+At-least-once delivery of messages
+
+
+1. High availability:
+Yes, run queue brokers on multiple nodes managed by Kubernetes (good point ✅).
+Replicate messages across nodes (e.g., each partition has multiple replicas).
+Use a leader-follower model → one replica is the leader, followers replicate logs. 
+If the leader fails, followers can take over (via leader election).
+This ensures the queue survives node failures.
+
+2. Ordering guarantees:
+Divide the queue into partitions. Within each partition, messages are strictly ordered (append-only log).
+A consumer reads from a partition sequentially, ensuring order is preserved.
+Across partitions, global ordering is not guaranteed — but that’s usually acceptable in distributed queues.
+
+3. At-least-once delivery:
+Consumers acknowledge messages after processing.
+If a consumer crashes before sending an ACK, the broker will redeliver the message to another consumer.
+This may cause duplicates, but idempotent processing on the consumer side can handle it.
+
+"For high availability, I’d replicate messages across nodes with leader-follower replication, 
+managed by Kubernetes for failover. For ordering, I’d enforce per-partition ordering using an append-only log. 
+For at-least-once delivery, I’d use acknowledgments and redelivery on failure, with idempotent consumers to handle duplicates."
+
