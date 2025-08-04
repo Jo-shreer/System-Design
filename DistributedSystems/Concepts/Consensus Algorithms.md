@@ -35,16 +35,27 @@ Acceptors accept the value.
 Learners learn the value once accepted by a majority.
 
 2. Raft
-Designed to be more understandable than Paxos.
-Uses leader-based consensus.
-One leader handles client requests and replicates log entries to followers.
-If the leader fails, a new leader is elected.
-Raft splits consensus into smaller tasks: leader election, log replication, safety.
-Widely used in production (e.g., etcd, Consul).
-Raft basic phases:
-Leader election: Nodes vote to elect a leader.
-Log replication: Leader receives commands and replicates them to followers.
-Safety: Logs are consistent; followers only apply committed entries.
+Raft consensus algorithm is designed to achieve consensus across distributed nodes by electing a single leader that manages the replicated log.
+
+Roles:
+Leader: Handles all client requests (writes), appends entries to its log, and replicates them to followers.
+Followers: Passive nodes that replicate the leader’s log entries and respond to leader’s heartbeats.
+Candidates: When a follower times out without hearing from a leader, it becomes a candidate and starts an election.
+
+Leader Election:
+A candidate requests votes from other nodes.
+If it gets a majority, it becomes the leader.
+This ensures only one leader at a time, preventing split-brain scenarios.
+
+Log Replication:
+The leader appends new entries to its log and sends AppendEntries RPCs to followers.
+Followers write the entries to their logs and acknowledge.
+Once a majority acknowledges, the leader commits the entries.
+
+Handling Leader Failures:
+If the leader crashes or becomes unreachable, followers timeout.
+One follower becomes a candidate and starts a new election.
+A new leader is elected to continue operation.
 
 Why use consensus algorithms?
 Without consensus, distributed systems risk split-brain scenarios (different nodes believing different truths), 
