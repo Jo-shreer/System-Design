@@ -53,4 +53,4 @@ Consistency in Partitioned Systems
 
 ---
 
-Would you like to explore more on vector clocks, distributed locking, or real-world systems like Kubernetes next?
+
