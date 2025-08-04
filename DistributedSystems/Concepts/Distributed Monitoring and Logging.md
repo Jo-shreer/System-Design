@@ -12,3 +12,8 @@ Popular Tools:
 - **Grafana:** Visualization dashboards.
 - **ELK Stack (Elasticsearch, Logstash, Kibana):** Log aggregation and analysis.
 - **Jaeger / Zipkin:** Distributed tracing for latency analysis.
+
+Challenges:
+- Correlating data across nodes.
+- Handling high volumes of metrics and logs.
+- Ensuring minimal performance overhead.
