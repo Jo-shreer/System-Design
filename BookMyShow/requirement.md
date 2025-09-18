@@ -51,4 +51,32 @@ Use distributed locking (e.g., Redis with RedLock algorithm).
 If payment is successful → update status to BOOKED.
 If payment fails or timeout → revert to AVAILABLE.
 
+# Scalability Considerations
+Read-heavy system → Use caching (e.g., movie listings, showtimes)
+Partitioning by city: Scale horizontally based on regions
+CDN for static content (movie posters/trailers)
+Rate-limiting to prevent bots
+Autoscaling based on load
+Queue (Kafka/SQS) for async tasks like notifications, logs
+
+# Security Measures
+
+HTTPS everywhere
+Encrypted passwords (bcrypt)
+Payment tokenization (never store card details)
+Rate limiting, DDoS protection
+Role-based access (admin vs. customer)
+
+# Sample Booking Flow
+
+User logs in → selects city
+Browses movies → selects movie
+Picks showtime & theater
+Sees seat layout → selects seats
+Seats marked as LOCKED
+Proceeds to payment
+On success → status to BOOKED
+Sends confirmation email/SMS
+If timeout → seats become AVAILABLE
+
 
